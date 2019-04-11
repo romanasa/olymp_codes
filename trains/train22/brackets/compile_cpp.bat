@@ -1,0 +1,1 @@
+g++ -O2 -Wall -std=gnu++11 brackets.cpp grader.cpp -o brackets

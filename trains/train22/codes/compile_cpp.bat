@@ -1,0 +1,1 @@
+g++ -O2 -Wall -std=gnu++11 codes.cpp grader.cpp -o codes

@@ -1,0 +1,267 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <cstring>
+#include <queue>
+#include <cmath>
+#include <cassert>
+#include <set>
+#include <map>
+
+typedef long long ll;
+
+using namespace std;
+
+const int dd = (int)1e5 + 5;
+const long double eps2 = 0;
+
+int cntQ = 0;
+map<int, map<int, map<long double, pair<long double, long double> > > > ans;
+
+pair<long double, long double> get(int a, int b, int c) {
+	if (ans[a][b][c] != make_pair((long double)0, (long double)0)) {
+		return ans[a][b][c];
+	}
+	assert(cntQ++ < 999);
+	cout << "? " << a << " " << b << " " << c << endl;
+	long double p, q;
+	cin >> p >> q;
+	return ans[a][b][c] = make_pair( p, q );
+}
+pair<long double, long double> get2(int a, int b, long double c) {
+	assert(cntQ++ < 999);
+	cout << "? " << a << " " << b << " " << c + 1e-5 << endl;
+	long double p, q;
+	cin >> p >> q;
+	return make_pair( p, q );
+}
+
+struct Q {
+	int a, b, c, d, e, f;
+	Q() {}
+	Q(int _a, int _b, int _c, int _d, int _e, int _f) : a(_a), b(_b), c(_c), d(_d), e(_e), f(_f) {
+		if (make_pair(a, b) > make_pair(c, d)) {
+			swap(a, c), swap(b, d);
+		}
+		if (make_pair(a, b) > make_pair(e, f)) {
+			swap(a, e), swap(b, f);
+		}
+		if (make_pair(c, d) > make_pair(e, f)) {
+			swap(c, e), swap(d, f);
+		}
+	}
+
+	bool operator<(Q &other) const {
+		return vector<int>{ a, b, c, d, e, f } < vector<int>{other.a, other.b, other.c, other.d, other.e, other.f };
+	}
+	bool operator==(Q &other) const {
+		return vector<int>{ a, b, c, d, e, f } == vector<int>{other.a, other.b, other.c, other.d, other.e, other.f };
+	}
+};
+vector<Q> G;
+
+void check(int x0, int x1, int x2, int y0, int y1, int y2) {
+	if (x0 == x1 && y0 == y1) return;
+	if (x2 == x1 && y2 == y1) return;
+	if (x0 == x2 && y0 == y2) return;
+	if (x0 == x1 && x1 == x2) return;
+	if (y0 == y1 && y1 == y2) return;
+	pair<long double, long double> L1 = get(y1 - y0, x0 - x1, (y1 - y0) * x0 + (x0 - x1) * y0);
+	if (L1.first > eps2 && L1.second > eps2) return;
+	pair<long double, long double> L2 = get(y2 - y1, x1 - x2, (y2 - y1) * x1 + (x1 - x2) * y1);
+	if (L2.first > eps2 && L2.second > eps2) return;
+	pair<long double, long double> L3 = get(y0 - y2, x2 - x0, (y0 - y2) * x2 + (x2 - x0) * y2);
+	if (L3.first > eps2 && L3.second > eps2) return;
+	if (abs(L1.first - L2.first) > eps2 || abs(L1.first - L3.first) > eps2) return;
+	G.push_back(Q(x0, y0, x1, y1, x2, y2));
+}
+
+int main() {
+	cout.precision(10);
+	cout << fixed;
+	//freopen("input.txt", "r", stdin); freopen("output.txt", "w", stdout);
+	int x0, x2;
+	int C = 1000;
+	int y0, y2;
+	vector<int> x1, y1;
+	{
+		int l = -C - 1, r = C + 1;
+		pair<long double, long double> Y = get(1, 0, -C);
+		while (r - l > 1) {
+			int m = (l + r) / 2;
+			pair<long double, long double> L = get(1, 0, m);
+			if (abs(Y.first - L.first) <= eps2 && abs(Y.second - L.second) <= eps2) {
+				l = m;
+			} else {
+				r = m;
+			}
+		}
+		x0 = l;
+	}
+	{
+		int l = -C - 1, r = C + 1;
+		pair<long double, long double> Y = get(1, 0, C);
+		while (r - l > 1) {
+			int m = (l + r) / 2;
+			pair<long double, long double> L = get(1, 0, m);
+			if (abs(Y.first - L.first) <= eps2 && abs(Y.second - L.second) <= eps2) {
+				r = m;
+			} else {
+				l = m;
+			}
+		}
+		x2 = r;
+	}
+	{
+		int l = -C - 1, r = C + 1;
+		pair<long double, long double> Y = get(0, 1, -C);
+		while (r - l > 1) {
+			int m = (l + r) / 2;
+			pair<long double, long double> L = get(0, 1, m);
+			if (abs(Y.first - L.first) <= eps2 && abs(Y.second - L.second) <= eps2) {
+				l = m;
+			} else {
+				r = m;
+			}
+		}
+		y0 = l;
+	}
+	{
+		int l = -C - 1, r = C + 1;
+		pair<long double, long double> Y = get(0, 1, C);
+		while (r - l > 1) {
+			int m = (l + r) / 2;
+			pair<long double, long double> L = get(0, 1, m);
+			if (abs(Y.first - L.first) <= eps2 && abs(Y.second - L.second) <= eps2) {
+				r = m;
+			} else {
+				l = m;
+			}
+		}
+		y2 = r;
+	}
+	{
+		int l = x0, r = x2;
+		while (r - l > 1) {
+			int m = (l + r) / 2;
+			int eps = 1;
+			int ml = m - eps, mr = m + eps;
+			pair<long double, long double> Lm = get2(1, 0, m);
+			pair<long double, long double> Lml = get2(1, 0, ml);
+			pair<long double, long double> Lmr = get2(1, 0, mr);
+			long double LL = Lm.first - Lml.first, RR = Lmr.first - Lm.first;
+			if (LL == 0) {
+				LL = get2(1, 0, m - 0.1).first - get2(1, 0, ml - 0.1).first;
+			}
+			if (RR == 0) {
+				RR = get2(1, 0, mr - 0.1).first - get2(1, 0, m - 0.1).first;
+			}
+			if (RR > LL - eps2) {
+				l = m;
+			} else {
+				r = m;
+			}
+		}
+		for (int i = -3; i <= 3; ++i)
+			x1.push_back(l + i);
+		x1.push_back(x0);
+		x1.push_back(x0 + 1);
+		x1.push_back(x0 + 2);
+		x1.push_back(x2);
+		x1.push_back(x2 - 1);
+		x1.push_back(x2 - 2);
+	}
+	{
+		int l = x0 + 1, r = x2;
+		while (r - l > 1) {
+			int m = (l + r) / 2;
+			pair<long double, long double> L = get(1, 0, m);
+			if ((m - x0) * L.second - L.first * (x2 - m) > eps2) {
+				l = m;
+			} else {
+				r = m;
+			}
+		}
+		for (int i = -3; i <= 3; ++i)
+			x1.push_back(l + i);
+	}
+	{
+		int l = y0 + 1, r = y2;
+		while (r - l > 1) {
+			int m = (l + r) / 2;
+			pair<long double, long double> L = get(0, 1, m);
+			if ((m - y0) * L.second - L.first * (y2 - m) > eps2) {
+				l = m;
+			} else {
+				r = m;
+			}
+		}
+		for (int i = -3; i <= 3; ++i)
+			y1.push_back(l + i);
+	}
+	{
+		int l = y0, r = y2;
+		while (r - l > 1) {
+			int m = (l + r) / 2;
+			int eps = 1;
+			int ml = m - eps, mr = m + eps;
+			pair<long double, long double> Lm = get2(0, 1, m);
+			pair<long double, long double> Lml = get2(0, 1, ml);
+			pair<long double, long double> Lmr = get2(0, 1, mr);
+			long double LL = Lm.first - Lml.first, RR = Lmr.first - Lm.first;
+			if (LL < eps2) {
+				LL = get2(0, 1, m - 0.1).first - get2(0, 1, ml - 0.1).first;
+			}
+			if (RR < eps2) {
+				RR = get2(0, 1, mr - 0.1).first - get2(0, 1, m - 0.1).first;
+			}
+			if (RR > LL - eps2) {
+				l = m;
+			} else {
+				r = m;
+			}
+		}
+		for (int i = l; i <= r; ++i)
+			y1.push_back(i);
+		y1.push_back(y0);
+		y1.push_back(y0 + 1);
+		y1.push_back(y2 - 2);
+		y1.push_back(y2);
+		y1.push_back(y2 - 1);
+		y1.push_back(y2 - 2);
+	}
+	for (int x : x1) for (int y : y1) {
+		check(x0, x, x2, y0, y, y2);
+		check(x0, x, x2, y0, y2, y);
+		check(x0, x, x2, y, y0, y2);
+		check(x0, x, x2, y, y2, y0);
+		check(x0, x, x2, y2, y, y0);
+		check(x0, x, x2, y2, y0, y);
+	}
+	int mn = (int)2e9;
+	assert(G.size());
+	sort(G.begin(), G.end());
+	G.resize(unique(G.begin(), G.end()) - G.begin());
+	for (Q &T : G) {
+		int X1 = T.c - T.a, Y1 = T.d - T.b, X2 = T.e - T.a, Y2 = T.f - T.b;
+		int cur = abs(X1 * Y2 - X2 * Y1);
+		if (cur < mn) mn = cur;
+	}
+	int cnt = 1;
+	vector<Q> ANS;
+	for (Q &T : G) {
+		int X1 = T.c - T.a, Y1 = T.d - T.b, X2 = T.e - T.a, Y2 = T.f - T.b;
+		int cur = abs(X1 * Y2 - X2 * Y1);
+		if (cur == mn) {
+			ANS.push_back(T);
+		}
+	}
+	assert(ANS.size() != 14);
+	for (Q &T : ANS) {
+		cout << "! " << T.a << " " << T.b << " " << T.c << " " << T.d << " " << T.e << " " << T.f << endl;
+		return 0;
+	}
+	return 0;
+}

@@ -1,0 +1,709 @@
+	.file	"xor.cpp"
+	.section .rdata,"dr"
+__ZStL19piecewise_construct:
+	.space 1
+.lcomm __ZStL8__ioinit,1,1
+__ZStL13allocator_arg:
+	.space 1
+__ZStL6ignore:
+	.space 1
+	.def	___main;	.scl	2;	.type	32;	.endef
+	.text
+	.globl	_main
+	.def	_main;	.scl	2;	.type	32;	.endef
+_main:
+LFB3883:
+	.cfi_startproc
+	pushl	%ebp
+	.cfi_def_cfa_offset 8
+	.cfi_offset 5, -8
+	movl	%esp, %ebp
+	.cfi_def_cfa_register 5
+	andl	$-16, %esp
+	call	___main
+	call	__Z5solvev
+	movl	$0, %eax
+	leave
+	.cfi_restore 5
+	.cfi_def_cfa 4, 4
+	ret
+	.cfi_endproc
+LFE3883:
+	.section	.text$_Z3getx,"x"
+	.linkonce discard
+	.globl	__Z3getx
+	.def	__Z3getx;	.scl	2;	.type	32;	.endef
+__Z3getx:
+LFB3884:
+	.cfi_startproc
+	pushl	%ebp
+	.cfi_def_cfa_offset 8
+	.cfi_offset 5, -8
+	movl	%esp, %ebp
+	.cfi_def_cfa_register 5
+	pushl	%esi
+	pushl	%ebx
+	subl	$16, %esp
+	.cfi_offset 6, -12
+	.cfi_offset 3, -16
+	movl	8(%ebp), %eax
+	movl	%eax, -16(%ebp)
+	movl	12(%ebp), %eax
+	movl	%eax, -12(%ebp)
+	cmpl	$0, -12(%ebp)
+	jns	L4
+	movl	$0, %eax
+	movl	$0, %edx
+	jmp	L5
+L4:
+	movl	-16(%ebp), %eax
+	andl	$3, %eax
+	movl	%eax, -24(%ebp)
+	movl	-12(%ebp), %eax
+	andl	$0, %eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	orl	-24(%ebp), %eax
+	testl	%eax, %eax
+	jne	L6
+	movl	-16(%ebp), %eax
+	movl	-12(%ebp), %edx
+	jmp	L5
+L6:
+	movl	-16(%ebp), %eax
+	andl	$3, %eax
+	movl	%eax, %ebx
+	movl	-12(%ebp), %eax
+	andl	$0, %eax
+	movl	%eax, %esi
+	movl	%ebx, %eax
+	xorl	$1, %eax
+	orl	%esi, %eax
+	testl	%eax, %eax
+	jne	L7
+	movl	$1, %eax
+	movl	$0, %edx
+	jmp	L5
+L7:
+	movl	-16(%ebp), %eax
+	andl	$3, %eax
+	movl	%eax, %edx
+	movl	-12(%ebp), %eax
+	andl	$0, %eax
+	movl	%eax, %ecx
+	movl	%edx, %eax
+	xorl	$2, %eax
+	orl	%ecx, %eax
+	testl	%eax, %eax
+	jne	L8
+	movl	-16(%ebp), %eax
+	movl	-12(%ebp), %edx
+	addl	$1, %eax
+	adcl	$0, %edx
+	jmp	L5
+L8:
+	movl	$0, %eax
+	movl	$0, %edx
+L5:
+	addl	$16, %esp
+	popl	%ebx
+	.cfi_restore 3
+	popl	%esi
+	.cfi_restore 6
+	popl	%ebp
+	.cfi_restore 5
+	.cfi_def_cfa 4, 4
+	ret
+	.cfi_endproc
+LFE3884:
+	.section	.text$_Z3uaxRxx,"x"
+	.linkonce discard
+	.globl	__Z3uaxRxx
+	.def	__Z3uaxRxx;	.scl	2;	.type	32;	.endef
+__Z3uaxRxx:
+LFB3885:
+	.cfi_startproc
+	pushl	%ebp
+	.cfi_def_cfa_offset 8
+	.cfi_offset 5, -8
+	movl	%esp, %ebp
+	.cfi_def_cfa_register 5
+	subl	$8, %esp
+	movl	12(%ebp), %eax
+	movl	%eax, -8(%ebp)
+	movl	16(%ebp), %eax
+	movl	%eax, -4(%ebp)
+	movl	8(%ebp), %eax
+	movl	4(%eax), %edx
+	movl	(%eax), %eax
+	cmpl	-4(%ebp), %edx
+	jg	L9
+	cmpl	-4(%ebp), %edx
+	jl	L12
+	cmpl	-8(%ebp), %eax
+	jae	L9
+L12:
+	movl	8(%ebp), %ecx
+	movl	-8(%ebp), %eax
+	movl	-4(%ebp), %edx
+	movl	%eax, (%ecx)
+	movl	%edx, 4(%ecx)
+L9:
+	leave
+	.cfi_restore 5
+	.cfi_def_cfa 4, 4
+	ret
+	.cfi_endproc
+LFE3885:
+	.section .rdata,"dr"
+LC0:
+	.ascii "\12\0"
+	.text
+	.globl	__Z5solvev
+	.def	__Z5solvev;	.scl	2;	.type	32;	.endef
+__Z5solvev:
+LFB3886:
+	.cfi_startproc
+	.cfi_personality 0,___gxx_personality_v0
+	.cfi_lsda 0,LLSDA3886
+	pushl	%ebp
+	.cfi_def_cfa_offset 8
+	.cfi_offset 5, -8
+	movl	%esp, %ebp
+	.cfi_def_cfa_register 5
+	pushl	%edi
+	pushl	%esi
+	pushl	%ebx
+	subl	$188, %esp
+	.cfi_offset 7, -12
+	.cfi_offset 6, -16
+	.cfi_offset 3, -20
+	leal	-128(%ebp), %eax
+	movl	%eax, (%esp)
+	movl	$__ZSt3cin, %ecx
+LEHB0:
+	call	__ZNSirsERx
+	subl	$4, %esp
+	movl	%eax, %edx
+	leal	-136(%ebp), %eax
+	movl	%eax, (%esp)
+	movl	%edx, %ecx
+	call	__ZNSirsERx
+	subl	$4, %esp
+	movl	%eax, %edx
+	leal	-120(%ebp), %eax
+	movl	%eax, (%esp)
+	movl	%edx, %ecx
+	call	__ZNSirsERx
+	subl	$4, %esp
+	movl	$0, -144(%ebp)
+	movl	$0, -140(%ebp)
+	movl	-120(%ebp), %eax
+	movl	-116(%ebp), %edx
+	movl	%eax, %edi
+	andl	$1, %edi
+	movl	%edi, %ebx
+	movl	%edx, %eax
+	andl	$0, %eax
+	movl	%eax, %esi
+	movl	%esi, %eax
+	orl	%ebx, %eax
+	testl	%eax, %eax
+	je	L14
+	movl	-136(%ebp), %eax
+	movl	-132(%ebp), %edx
+	movl	-120(%ebp), %ecx
+	movl	-116(%ebp), %ebx
+	subl	%ecx, %eax
+	sbbl	%ebx, %edx
+	movl	%eax, -112(%ebp)
+	movl	%edx, -108(%ebp)
+	leal	-112(%ebp), %eax
+	movl	%eax, 4(%esp)
+	leal	-128(%ebp), %eax
+	movl	%eax, (%esp)
+	call	__ZSt3maxIxERKT_S2_S2_
+	movl	4(%eax), %edx
+	movl	(%eax), %eax
+	movl	%eax, -32(%ebp)
+	movl	%edx, -28(%ebp)
+	jmp	L15
+L16:
+	movl	-120(%ebp), %ecx
+	movl	-116(%ebp), %ebx
+	movl	-32(%ebp), %eax
+	movl	-28(%ebp), %edx
+	addl	%ecx, %eax
+	adcl	%ebx, %edx
+	addl	$-1, %eax
+	adcl	$-1, %edx
+	movl	%eax, (%esp)
+	movl	%edx, 4(%esp)
+	call	__Z3getx
+	movl	%eax, %ebx
+	movl	%edx, %esi
+	movl	-32(%ebp), %eax
+	movl	-28(%ebp), %edx
+	addl	$-1, %eax
+	adcl	$-1, %edx
+	movl	%eax, (%esp)
+	movl	%edx, 4(%esp)
+	call	__Z3getx
+	movl	%ebx, %edi
+	xorl	%eax, %edi
+	movl	%edi, -160(%ebp)
+	xorl	%edx, %esi
+	movl	%esi, -156(%ebp)
+	movl	-160(%ebp), %eax
+	movl	-156(%ebp), %edx
+	movl	%eax, 4(%esp)
+	movl	%edx, 8(%esp)
+	leal	-144(%ebp), %eax
+	movl	%eax, (%esp)
+	call	__Z3uaxRxx
+	addl	$1, -32(%ebp)
+	adcl	$0, -28(%ebp)
+L15:
+	movl	-136(%ebp), %eax
+	movl	-132(%ebp), %edx
+	movl	-120(%ebp), %ecx
+	movl	-116(%ebp), %ebx
+	subl	%ecx, %eax
+	sbbl	%ebx, %edx
+	addl	$2, %eax
+	adcl	$0, %edx
+	cmpl	-28(%ebp), %edx
+	jg	L16
+	cmpl	-28(%ebp), %edx
+	jl	L31
+	cmpl	-32(%ebp), %eax
+	ja	L16
+L31:
+	movl	-144(%ebp), %eax
+	movl	-140(%ebp), %edx
+	movl	%eax, (%esp)
+	movl	%edx, 4(%esp)
+	movl	$__ZSt4cout, %ecx
+	call	__ZNSolsEx
+	subl	$8, %esp
+	movl	$LC0, 4(%esp)
+	movl	%eax, (%esp)
+	call	__ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
+	movl	$0, %eax
+	jmp	L35
+L14:
+	movl	-136(%ebp), %eax
+	movl	-132(%ebp), %edx
+	movl	-120(%ebp), %ecx
+	movl	-116(%ebp), %ebx
+	subl	%ecx, %eax
+	sbbl	%ebx, %edx
+	movl	-120(%ebp), %ecx
+	movl	-116(%ebp), %ebx
+	subl	%ecx, %eax
+	sbbl	%ebx, %edx
+	movl	%eax, -104(%ebp)
+	movl	%edx, -100(%ebp)
+	leal	-104(%ebp), %eax
+	movl	%eax, 4(%esp)
+	leal	-128(%ebp), %eax
+	movl	%eax, (%esp)
+	call	__ZSt3maxIxERKT_S2_S2_
+	movl	4(%eax), %edx
+	movl	(%eax), %eax
+	movl	%eax, -40(%ebp)
+	movl	%edx, -36(%ebp)
+	jmp	L19
+L20:
+	movl	-120(%ebp), %ecx
+	movl	-116(%ebp), %ebx
+	movl	-40(%ebp), %eax
+	movl	-36(%ebp), %edx
+	addl	%ecx, %eax
+	adcl	%ebx, %edx
+	addl	$-1, %eax
+	adcl	$-1, %edx
+	movl	%eax, (%esp)
+	movl	%edx, 4(%esp)
+	call	__Z3getx
+	movl	%eax, %ebx
+	movl	%edx, %esi
+	movl	-40(%ebp), %eax
+	movl	-36(%ebp), %edx
+	addl	$-1, %eax
+	adcl	$-1, %edx
+	movl	%eax, (%esp)
+	movl	%edx, 4(%esp)
+	call	__Z3getx
+	movl	%ebx, %edi
+	xorl	%eax, %edi
+	movl	%edi, -168(%ebp)
+	xorl	%edx, %esi
+	movl	%esi, -164(%ebp)
+	movl	-168(%ebp), %eax
+	movl	-164(%ebp), %edx
+	movl	%eax, 4(%esp)
+	movl	%edx, 8(%esp)
+	leal	-144(%ebp), %eax
+	movl	%eax, (%esp)
+	call	__Z3uaxRxx
+	addl	$1, -40(%ebp)
+	adcl	$0, -36(%ebp)
+L19:
+	movl	-136(%ebp), %eax
+	movl	-132(%ebp), %edx
+	movl	-120(%ebp), %ecx
+	movl	-116(%ebp), %ebx
+	subl	%ecx, %eax
+	sbbl	%ebx, %edx
+	addl	$2, %eax
+	adcl	$0, %edx
+	cmpl	-36(%ebp), %edx
+	jg	L20
+	cmpl	-36(%ebp), %edx
+	jl	L32
+	cmpl	-40(%ebp), %eax
+	ja	L20
+L32:
+	movl	$0, -48(%ebp)
+	movl	$0, -44(%ebp)
+	jmp	L22
+L23:
+	addl	$1, -48(%ebp)
+	adcl	$0, -44(%ebp)
+L22:
+	movl	-48(%ebp), %esi
+	movl	$1, %eax
+	movl	$0, %edx
+	movl	%esi, %ecx
+	shldl	%cl, %eax, %edx
+	sall	%cl, %eax
+	testb	$32, %cl
+	je	L37
+	movl	%eax, %edx
+	xorl	%eax, %eax
+L37:
+	movl	%eax, %ecx
+	movl	%edx, %ebx
+	movl	-136(%ebp), %eax
+	movl	-132(%ebp), %edx
+	cmpl	%edx, %ebx
+	jl	L23
+	cmpl	%edx, %ebx
+	jg	L33
+	cmpl	%eax, %ecx
+	jbe	L23
+L33:
+	addl	$-1, -48(%ebp)
+	adcl	$-1, -44(%ebp)
+	movl	-48(%ebp), %ecx
+	movl	$1, %eax
+	movl	$0, %edx
+	shldl	%cl, %eax, %edx
+	sall	%cl, %eax
+	testb	$32, %cl
+	je	L36
+	movl	%eax, %edx
+	xorl	%eax, %eax
+L36:
+	movl	%eax, -64(%ebp)
+	movl	%edx, -60(%ebp)
+	movl	-64(%ebp), %eax
+	movl	-60(%ebp), %edx
+	addl	$1, %eax
+	adcl	$0, %edx
+	movl	%eax, -96(%ebp)
+	movl	%edx, -92(%ebp)
+	movl	-136(%ebp), %eax
+	movl	-132(%ebp), %edx
+	movl	-120(%ebp), %ecx
+	movl	-116(%ebp), %ebx
+	subl	%ecx, %eax
+	sbbl	%ebx, %edx
+	addl	$2, %eax
+	adcl	$0, %edx
+	movl	%eax, -88(%ebp)
+	movl	%edx, -84(%ebp)
+	leal	-96(%ebp), %eax
+	movl	%eax, 4(%esp)
+	leal	-88(%ebp), %eax
+	movl	%eax, (%esp)
+	call	__ZSt3minIxERKT_S2_S2_
+	movl	4(%eax), %edx
+	movl	(%eax), %eax
+	movl	%eax, -72(%ebp)
+	movl	%edx, -68(%ebp)
+	movl	-120(%ebp), %ecx
+	movl	-116(%ebp), %ebx
+	movl	-64(%ebp), %eax
+	movl	-60(%ebp), %edx
+	subl	%ecx, %eax
+	sbbl	%ebx, %edx
+	addl	$-1, %eax
+	adcl	$-1, %edx
+	movl	%eax, -80(%ebp)
+	movl	%edx, -76(%ebp)
+	leal	-80(%ebp), %eax
+	movl	%eax, 4(%esp)
+	leal	-128(%ebp), %eax
+	movl	%eax, (%esp)
+	call	__ZSt3maxIxERKT_S2_S2_
+	movl	4(%eax), %edx
+	movl	(%eax), %eax
+	movl	%eax, -56(%ebp)
+	movl	%edx, -52(%ebp)
+	jmp	L25
+L26:
+	movl	-120(%ebp), %ecx
+	movl	-116(%ebp), %ebx
+	movl	-56(%ebp), %eax
+	movl	-52(%ebp), %edx
+	addl	%ecx, %eax
+	adcl	%ebx, %edx
+	addl	$-1, %eax
+	adcl	$-1, %edx
+	movl	%eax, (%esp)
+	movl	%edx, 4(%esp)
+	call	__Z3getx
+	movl	%eax, %ebx
+	movl	%edx, %esi
+	movl	-56(%ebp), %eax
+	movl	-52(%ebp), %edx
+	addl	$-1, %eax
+	adcl	$-1, %edx
+	movl	%eax, (%esp)
+	movl	%edx, 4(%esp)
+	call	__Z3getx
+	movl	%ebx, %edi
+	xorl	%eax, %edi
+	movl	%edi, -176(%ebp)
+	xorl	%edx, %esi
+	movl	%esi, -172(%ebp)
+	movl	-176(%ebp), %eax
+	movl	-172(%ebp), %edx
+	movl	%eax, 4(%esp)
+	movl	%edx, 8(%esp)
+	leal	-144(%ebp), %eax
+	movl	%eax, (%esp)
+	call	__Z3uaxRxx
+	addl	$1, -56(%ebp)
+	adcl	$0, -52(%ebp)
+L25:
+	movl	-56(%ebp), %eax
+	movl	-52(%ebp), %edx
+	cmpl	-68(%ebp), %edx
+	jl	L26
+	cmpl	-68(%ebp), %edx
+	jg	L34
+	cmpl	-72(%ebp), %eax
+	jb	L26
+L34:
+	movl	-144(%ebp), %eax
+	movl	-140(%ebp), %edx
+	movl	%eax, (%esp)
+	movl	%edx, 4(%esp)
+	movl	$__ZSt4cout, %ecx
+	call	__ZNSolsEx
+LEHE0:
+	subl	$8, %esp
+	movl	$0, %eax
+	jmp	L35
+L30:
+	movl	%eax, (%esp)
+LEHB1:
+	call	__Unwind_Resume
+LEHE1:
+L35:
+	leal	-12(%ebp), %esp
+	popl	%ebx
+	.cfi_restore 3
+	popl	%esi
+	.cfi_restore 6
+	popl	%edi
+	.cfi_restore 7
+	popl	%ebp
+	.cfi_restore 5
+	.cfi_def_cfa 4, 4
+	ret
+	.cfi_endproc
+LFE3886:
+	.def	___gxx_personality_v0;	.scl	2;	.type	32;	.endef
+	.section	.gcc_except_table,"w"
+LLSDA3886:
+	.byte	0xff
+	.byte	0xff
+	.byte	0x1
+	.uleb128 LLSDACSE3886-LLSDACSB3886
+LLSDACSB3886:
+	.uleb128 LEHB0-LFB3886
+	.uleb128 LEHE0-LEHB0
+	.uleb128 L30-LFB3886
+	.uleb128 0
+	.uleb128 LEHB1-LFB3886
+	.uleb128 LEHE1-LEHB1
+	.uleb128 0
+	.uleb128 0
+LLSDACSE3886:
+	.text
+	.section	.text$_ZSt3maxIxERKT_S2_S2_,"x"
+	.linkonce discard
+	.globl	__ZSt3maxIxERKT_S2_S2_
+	.def	__ZSt3maxIxERKT_S2_S2_;	.scl	2;	.type	32;	.endef
+__ZSt3maxIxERKT_S2_S2_:
+LFB3906:
+	.cfi_startproc
+	pushl	%ebp
+	.cfi_def_cfa_offset 8
+	.cfi_offset 5, -8
+	movl	%esp, %ebp
+	.cfi_def_cfa_register 5
+	pushl	%ebx
+	.cfi_offset 3, -12
+	movl	8(%ebp), %eax
+	movl	(%eax), %ecx
+	movl	4(%eax), %ebx
+	movl	12(%ebp), %eax
+	movl	4(%eax), %edx
+	movl	(%eax), %eax
+	cmpl	%edx, %ebx
+	jg	L39
+	cmpl	%edx, %ebx
+	jl	L42
+	cmpl	%eax, %ecx
+	jae	L39
+L42:
+	movl	12(%ebp), %eax
+	jmp	L41
+L39:
+	movl	8(%ebp), %eax
+L41:
+	popl	%ebx
+	.cfi_restore 3
+	popl	%ebp
+	.cfi_restore 5
+	.cfi_def_cfa 4, 4
+	ret
+	.cfi_endproc
+LFE3906:
+	.section	.text$_ZSt3minIxERKT_S2_S2_,"x"
+	.linkonce discard
+	.globl	__ZSt3minIxERKT_S2_S2_
+	.def	__ZSt3minIxERKT_S2_S2_;	.scl	2;	.type	32;	.endef
+__ZSt3minIxERKT_S2_S2_:
+LFB3909:
+	.cfi_startproc
+	pushl	%ebp
+	.cfi_def_cfa_offset 8
+	.cfi_offset 5, -8
+	movl	%esp, %ebp
+	.cfi_def_cfa_register 5
+	pushl	%ebx
+	.cfi_offset 3, -12
+	movl	12(%ebp), %eax
+	movl	(%eax), %ecx
+	movl	4(%eax), %ebx
+	movl	8(%ebp), %eax
+	movl	4(%eax), %edx
+	movl	(%eax), %eax
+	cmpl	%edx, %ebx
+	jg	L44
+	cmpl	%edx, %ebx
+	jl	L47
+	cmpl	%eax, %ecx
+	jae	L44
+L47:
+	movl	12(%ebp), %eax
+	jmp	L46
+L44:
+	movl	8(%ebp), %eax
+L46:
+	popl	%ebx
+	.cfi_restore 3
+	popl	%ebp
+	.cfi_restore 5
+	.cfi_def_cfa 4, 4
+	ret
+	.cfi_endproc
+LFE3909:
+	.text
+	.def	___tcf_0;	.scl	3;	.type	32;	.endef
+___tcf_0:
+LFB3954:
+	.cfi_startproc
+	pushl	%ebp
+	.cfi_def_cfa_offset 8
+	.cfi_offset 5, -8
+	movl	%esp, %ebp
+	.cfi_def_cfa_register 5
+	subl	$8, %esp
+	movl	$__ZStL8__ioinit, %ecx
+	call	__ZNSt8ios_base4InitD1Ev
+	leave
+	.cfi_restore 5
+	.cfi_def_cfa 4, 4
+	ret
+	.cfi_endproc
+LFE3954:
+	.def	__Z41__static_initialization_and_destruction_0ii;	.scl	3;	.type	32;	.endef
+__Z41__static_initialization_and_destruction_0ii:
+LFB3953:
+	.cfi_startproc
+	pushl	%ebp
+	.cfi_def_cfa_offset 8
+	.cfi_offset 5, -8
+	movl	%esp, %ebp
+	.cfi_def_cfa_register 5
+	subl	$24, %esp
+	cmpl	$1, 8(%ebp)
+	jne	L49
+	cmpl	$65535, 12(%ebp)
+	jne	L49
+	movl	$__ZStL8__ioinit, %ecx
+	call	__ZNSt8ios_base4InitC1Ev
+	movl	$___tcf_0, (%esp)
+	call	_atexit
+L49:
+	leave
+	.cfi_restore 5
+	.cfi_def_cfa 4, 4
+	ret
+	.cfi_endproc
+LFE3953:
+	.section .rdata,"dr"
+	.align 4
+__ZL2dd:
+	.long	100007
+	.align 4
+__ZL1C:
+	.long	100000
+	.text
+	.def	__GLOBAL__sub_I_main;	.scl	3;	.type	32;	.endef
+__GLOBAL__sub_I_main:
+LFB3955:
+	.cfi_startproc
+	pushl	%ebp
+	.cfi_def_cfa_offset 8
+	.cfi_offset 5, -8
+	movl	%esp, %ebp
+	.cfi_def_cfa_register 5
+	subl	$24, %esp
+	movl	$65535, 4(%esp)
+	movl	$1, (%esp)
+	call	__Z41__static_initialization_and_destruction_0ii
+	leave
+	.cfi_restore 5
+	.cfi_def_cfa 4, 4
+	ret
+	.cfi_endproc
+LFE3955:
+	.section	.ctors,"w"
+	.align 4
+	.long	__GLOBAL__sub_I_main
+	.ident	"GCC: (GNU) 4.8.1"
+	.def	__ZNSirsERx;	.scl	2;	.type	32;	.endef
+	.def	__ZNSolsEx;	.scl	2;	.type	32;	.endef
+	.def	__ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc;	.scl	2;	.type	32;	.endef
+	.def	__Unwind_Resume;	.scl	2;	.type	32;	.endef
+	.def	__ZNSt8ios_base4InitD1Ev;	.scl	2;	.type	32;	.endef
+	.def	__ZNSt8ios_base4InitC1Ev;	.scl	2;	.type	32;	.endef
+	.def	_atexit;	.scl	2;	.type	32;	.endef

@@ -1,0 +1,50 @@
+ \documentclass[utf8,xcolor=table,14pt]{beamer}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{ulem}
+\usepackage{algorithm2e}
+\usepackage[table]{xcolor}
+
+\mode<presentation>
+{
+    \usetheme{Warsaw}
+    \setbeamercovered{transparent}
+}
+
+\useoutertheme{infolines}
+\setbeamertemplate{footline}[page number]{}
+
+\setbeamertemplate{headline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.5ex,right,rightskip=1em]{section in head/foot}%
+    \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.5ex,left,leftskip=1em]{subsection in head/foot}%
+    \usebeamerfont{section in head/foot}\insertsectionhead\hspace*{2ex}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\makeatletter
+
+\newcommand{\hl}{\only{\cellcolor{yellow}}}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+\setlength{\arrayrulewidth}{1pt}
+
+\begin{document}
+	
+\title{maxsquare}
+\section{Maxsquare}
+
+\begin{frame}{subtitle}
+	содержимое...
+\end{frame}
+
+\end{document}

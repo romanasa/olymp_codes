@@ -1,0 +1,59 @@
+import std.stdio;
+
+const int dd = 1007;
+
+int[dd][dd] d;
+char[dd][dd] A;
+int tmm;
+
+int [dd * dd]qx;
+int [dd * dd]qy;
+
+int [4]dx;
+int [4]dy;
+
+int qL, qR;
+
+int main() {
+    dx[0] = -1, dx[1] = 0, dx[2] = 1, dx[3] = 0;
+    dy[0] = 0, dy[1] = 1, dy[2] = 0, dy[3] = -1;
+    int n, m, k;
+    readf("%d %d\n", &n, &m);
+	
+    for (int i = 0; i < n; i++) readf("%s", A[i]);
+	
+    readf("%d", &k);
+    int ans = 0;
+    while (k--) {
+	int i1, j1, i2, j2;
+	scanf("%d %d %d %d", &i1, &j1, &i2, &j2);
+	i1--, j1--, i2--, j2--;
+		
+	qL = qR = 0;
+	tmm++;
+		
+	qx[qR] = i1;
+        qy[qR] = j1;
+        qR++;
+
+        for (int i = 0; i < n; i++)for (int j = 0; j < m; j++) d[i][j] = 1000 * 1000 * 1000;
+	d[i1][j1] = 0;
+		
+	while (qL < qR) {
+    	    int i = q[qL].first, j = q[qL].second;
+	    	qL++;			
+	    
+            for (int gg = 0; gg < 4; gg++) {
+                int ni = i + dx[gg], nj = j + dy[gg];
+                if (ni < 0 || ni >= n || nj < 0 || nj >= m) continue;
+                if (d[ni][nj] > d[i][j] + 1) {
+                    d[ni][nj] = d[i][j] + 1, qx[qL] = ni, qy[qL] = nj, qL++;
+                }
+            }
+	}
+        ans = max(ans, d[i2][j2]);
+    }
+    if (ans == 1000 * 1000 * 1000) writeln("Impossible");
+    else writeln(ans);
+    return 0;
+}

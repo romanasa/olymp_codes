@@ -1,0 +1,80 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{powerdot-kapslide}
+\RequirePackage{gen}
+\RequirePackage{pst-slpe}
+
+\pddefinepalettes{color}{
+  \definecolor{pdcolor1}{rgb}{0,0,0.5} %text
+  \definecolor{pdcolor2}{rgb}{0.5,0.4,1} %header
+  \definecolor{pdcolor3}{rgb}{0.6,0.7,1} %background bottom
+  \colorlet{pdcolor4}{white} %background top
+  \colorlet{pdcolor5}{pdcolor2} %line
+  \definecolor{pdcolor6}{rgb}{0.8,0,1} %highlight
+}{bw}{
+  \colorlet{pdcolor1}{black} 
+  \colorlet{pdcolor2}{black}
+  \colorlet{pdcolor3}{white}
+  \colorlet{pdcolor4}{white}
+  \colorlet{pdcolor5}{gray}
+  \colorlet{pdcolor6}{gray}
+}{slide}{
+  \definecolor{pdcolor1}{rgb}{0,0,0.5} %text
+  \definecolor{pdcolor2}{rgb}{0.3,0.3,0.8} %header
+  \colorlet{pdcolor3}{white} %background bottom
+  \colorlet{pdcolor4}{white} %background top
+  \colorlet{pdcolor5}{pdcolor2} %line
+  \definecolor{pdcolor6}{rgb}{0.8,0,1} %highlight
+}
+
+\pddefinetemplate{titleslide}{
+  titlefont=\Large\scshape\bfseries\centering,
+  texthook=t,
+  textpos={.5\slidewidth,.75\slideheight},
+  textwidth=.9\slidewidth,
+  textfont=\large\itshape\centering,
+}{
+  \psframe[fillstyle=slope,
+    slopeangle=90,
+    slopebegin=pdcolor3,
+    slopeend=pdcolor4,linestyle=none](-0.5\slidewidth,0)(1.5\slidewidth,\slideheight)
+  \renewcommand{\baselinestretch}{1.2}
+}
+
+\pddefinetemplate{slide}{
+  titlepos={.09\slidewidth,.93\slideheight},
+  titlehook=Bl,
+  titlewidth=.82\slidewidth,
+  titlefont={\Large\bf\color{pdcolor2}\parskip=0.5em},
+  textpos={.09\slidewidth,.85\slideheight},
+  textwidth=.82\slidewidth,
+  textheight=.8\slideheight,
+  rfpos={.91\slidewidth,.015\slideheight},
+  rfhook=Br,
+  rffont=\fontsize{6pt}{6pt}\selectfont,
+  lfpos={.08\slidewidth,.015\slideheight},
+  lfhook=Bl,
+  lffont=\fontsize{6pt}{6pt}\selectfont
+}{%
+  \psframe[fillstyle=slope,
+    slopeangle=90,
+    slopebegin=pdcolor3,
+    slopeend=pdcolor4,linestyle=none](-0.5\slidewidth,0)(1.5\slidewidth,\slideheight)
+  \psline[linewidth=0.002\slideheight,linecolor=pdcolor5]
+    (0,0.89\slideheight)(\slidewidth,0.89\slideheight)
+  \psline[linewidth=0.002\slideheight,linecolor=pdcolor1]
+    (0,0.04\slideheight)(\slidewidth,0.04\slideheight)
+}
+\pddefinetemplate[slide]{wideslide}{
+  textpos={.02\slidewidth,.85\slideheight},
+  textwidth=.98\slidewidth,
+}{
+}
+
+\fboxrule=0.3mm
+\newcommand{\highlight}{\color{pdcolor6}}
+\newcommand{\eqcolorbox}[1]{{\highlight\boxed{\color{pdcolor1}#1}}}
+
+\setitemize[1]{label=\textbullet}
+\setitemize[2]{label=\ding{226}}
+
+%\hypersetup{pdfpagemode=FullScreen,pdfborder={0 0 0}}

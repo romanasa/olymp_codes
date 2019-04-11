@@ -1,0 +1,53 @@
+\section{Задача I. Обмен валюты}
+
+\begin{frame}[t]{Задача I. Обмен валюты}
+
+  \begin{center}
+    \LARGE Задача I. Обмен валюты
+  \end{center}
+  \begin{center}
+    \includegraphics[width=7cm]{pics/prices.jpg}
+  \end{center}
+\end{frame}
+
+\begin{frame}[t]{}
+  \vspace{3cm}
+  \begin{itemize}
+    \item Идея задачи --- Роман Гусарев
+    \item Подготовка тестов --- Роман Андреев
+    \item Разбор задачи --- Роман Андреев
+  \end{itemize}
+\end{frame}
+
+\subsection{Постановка задачи}
+
+\begin{frame}[t]{Постановка задачи}
+\begin{itemize}
+    \item Дан массив чисел $c$.
+    \item Нужно найти два таких числа из массива, чтобы $|c_i/c_j - p|$ было минимально.
+\end{itemize}
+\end{frame}
+
+\subsection{Решение задачи}
+
+\begin{frame}[t]{Решение задачи}
+\begin{itemize}
+    \item Отсортируем массив $c$.
+    \item Переберём $j$, то есть какое из чисел будет стоять в знаменателе.
+    \item Чтобы найти кандидатов на $c_i$ нужно всего лишь найти значение $c_j \times p$ в нашем массиве (например, бинарным поиском) и попробовать взять первое число,
+          более этого значения и первое число меньшее этого значения.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Технический момент}
+\begin{itemize}
+    \item Для того, чтобы корректно выбрать минимальный ответ, хватает 64-битного типа.
+    \item Хотим сравнить $|a/b - p|$ и $|c/d - p|$.
+    \item Если $| |\lfloor a/b \rfloor - p| - |\lfloor c/d \rfloor - p| | > 2$, то можно сравнить только 
+          $|\lfloor a/b \rfloor - p|$ c $|\lfloor c/d \rfloor - p|$.
+    \item Иначе, это означает, что $| |a/b - p| - |\lfloor a/b \rfloor - p| | \leq 1$ и $| |c/d - p| - |\lfloor a/b \rfloor - p| | \leq 1 + 2$.
+    \item Тогда остается только сравнить 
+           $|a - p b| - b \times |\lfloor a/b \rfloor - p|$ с $|c - p d| - d \times |\lfloor a/b \rfloor - p|$, а все эти числа влезают в 64 тип данных.
+    
+\end{itemize}
+\end{frame}

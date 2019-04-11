@@ -1,0 +1,117 @@
+\usepackage[cp1251]{inputenc}
+\usepackage{graphicx}
+\usepackage{mathtext}
+\usepackage[english,russian]{babel}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{wrapfig}
+\usepackage{longtable}
+
+
+\relpenalty=10000
+\binoppenalty=10000
+
+\declare@shorthand{russian}{""}{\nobreak\hskip.15em\ignorespaces}
+\declare@shorthand{russian}{",}{\nobreak\hskip.2em\ignorespaces}
+
+\newcounter{bigsect}
+\renewcommand{\thebigsect}{\Roman{bigsect}}
+
+\newcounter{smallsect}[bigsect]
+\renewcommand{\thesmallsect}{\thebigsect.{\arabic{smallsect}}}
+
+\newcounter{ssect}[smallsect]
+\renewcommand{\thessect}{\arabic{ssect}}
+
+\newcommand{\bigsect}[1]{%
+\vspace{0.3cm}\pagebreak[2]%
+\par\hspace{0cm}{\bf\refstepcounter{bigsect}%
+\underline{\textsc{\large\thebigsect. #1}}\nopagebreak%
+}\par\vspace{0.2cm}}
+
+\newcommand{\smallsect}[1]{%
+\pagebreak[2]\par\vspace{0cm plus 0.5cm}\hspace{0cm}{\refstepcounter{smallsect}%
+\bf\textsc{\thesmallsect. #1.}\nopagebreak
+}}
+
+\newcommand{\ssect}{%
+\pagebreak[1]\par\refstepcounter{ssect}{\bf\thessect. }%
+}
+
+\newcommand{\meas}[1]{\mbox{\rm\ #1}}
+\newcommand{\unit}[1]{\mbox{\rm\ #1}}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\sim}{\thicksim}
+\newcommand{\fref}[1]{(\ref{#1})}
+
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}{\hbox{$\mathsurround=0pt #1$}}{}}
+
+\newcommand{\todo}[1]{\marginpar{#1}}
+
+\newcommand{\vvecwstyle}[2]{\lefteqn{#1\hspace{-0.07em}\vec{\phantom{#2}}}#2}
+\newcommand{\vvec}[1]{\mathpalette\vvecwstyle{#1}}
+
+\newcommand{\ttildewstyle}[2]{\lefteqn{#1\hspace{0.07em}\tilde{\phantom{#2}}}#2}
+\newcommand{\ttilde}[1]{\mathpalette\ttildewstyle{#1}}
+
+\newcommand{\eps}{\varepsilon}
+
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\divv}{div}
+\renewcommand{\div}{\divv}
+
+\DeclareMathOperator{\Ree}{Re}
+\renewcommand{\Re}{\Ree}
+
+\newcommand{\intl}{\int\limits}
+
+%
+\newlength{\width}
+\newlength{\height}
+\newcommand{\ssubs}[1]{\vbox to \height{\vfill\hbox{#1}\par\vfill}}
+\newcommand{\subs}{}
+\newcommand{\correctwidth}[1]{
+\width=#1
+\settoheight{\height}{\includegraphics[width=\width]{detection/THzmove/si_1d0_0d8_spektr_f.eps}}
+}
+
+\newenvironment{ulists}[1]{%
+\begin{list}{#1}{\parsep=0pt \itemsep=0pt}%
+}
+{\end{list}}
+
+\newenvironment{ulist}{%
+\begin{ulists}{$\bullet$}%
+}
+{\end{ulists}}
+
+\newenvironment{olist}{%
+\setcounter{tmp}{0}
+\begin{ulists}{\refstepcounter{tmp}\arabic{tmp}.}%
+}
+{\end{ulists}}
+
+\newcommand{\refhead}{\bigsect{\refname}\vspace{-0.2cm}}
+\renewenvironment{thebibliography}[1]
+     {\refhead%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist}
+
+\@addtoreset{footnote}{page} 

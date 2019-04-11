@@ -1,0 +1,18 @@
+10
+var i=1
+fact=1
+fact=fact*i
+i=i+1
+fact=fact*i
+i=i+1
+fact=fact*i
+i=i+1
+fact=fact*i
+var i=i+1
+6
+release 1 9
+fix 2 var fact=1
+release 1 9
+release 1 10
+fix 10 i=i/0
+release 1 10

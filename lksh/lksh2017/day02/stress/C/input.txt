@@ -1,0 +1,10 @@
+5 9
+link 1 2
+link 2 4
+link 3 5
+link 2 3
+cut 2 4
+link 2 4
+cut 3 5
+cut 2 3
+cut 2 4

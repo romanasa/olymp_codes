@@ -1,0 +1,65 @@
+\usepackage{graphicx}
+\usepackage[cp866]{inputenc}
+\usepackage{mathtext}
+\usepackage[english,russian]{babel}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{wrapfig}
+\usepackage{longtable}
+\usepackage{array}
+
+\relpenalty=10000
+\binoppenalty=10000
+
+\declare@shorthand{russian}{""}{\nobreak\hskip.15em\ignorespaces}
+\declare@shorthand{russian}{",}{\nobreak\hskip.2em\ignorespaces}
+
+\newcommand{\meas}[1]{\mbox{\rm\ #1}}
+\newcommand{\unit}[1]{\mbox{\rm\ #1}}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\sim}{\thicksim}
+\newcommand{\fref}[1]{(\ref{#1})}
+
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}{\hbox{$\mathsurround=0pt #1$}}{}}
+
+\newcommand{\todo}[1]{\marginpar{\raggedright #1}}
+
+\newcommand{\vvecwstyle}[2]{\lefteqn{#1\hspace{-0.07em}\vec{\phantom{#2}}}#2}
+\newcommand{\vvec}[1]{\mathpalette\vvecwstyle{#1}}
+
+\newcommand{\ttildewstyle}[2]{\lefteqn{#1\hspace{0.07em}\tilde{\phantom{#2}}}#2}
+\newcommand{\ttilde}[1]{\mathpalette\ttildewstyle{#1}}
+
+\newcommand{\eps}{\varepsilon}
+
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\divv}{div}
+\renewcommand{\div}{\divv}
+
+\DeclareMathOperator{\Ree}{Re}
+\renewcommand{\Re}{\Ree}
+\DeclareMathOperator{\Imm}{Im}
+\renewcommand{\Im}{\Imm}
+
+\newcommand{\intl}{\int\limits}
+
+\newenvironment{ulists}[1]{%
+\begin{list}{#1}{\parsep=0pt \itemsep=0pt}%
+}
+{\end{list}}
+
+\newenvironment{ulist}{%
+\begin{ulists}{$\bullet$}%
+}
+{\end{ulists}}
+
+\newenvironment{olist}{%
+\setcounter{tmp}{0}
+\begin{ulists}{\refstepcounter{tmp}\arabic{tmp}.}%
+}
+{\end{ulists}}
+
+

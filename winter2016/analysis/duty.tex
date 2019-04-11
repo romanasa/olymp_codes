@@ -1,0 +1,76 @@
+\section{Задача E. Занимательное дежурство}
+
+\begin{frame}[t]{Задача E. Занимательное дежурство}
+
+  \begin{center}
+    \LARGE Задача E. Занимательное дежурство
+  \end{center}
+  \begin{center}
+      \includegraphics[width=7cm]{pics/duty.jpg}
+  \end{center}
+\end{frame}
+
+\begin{frame}[t]{}
+  \vspace{3cm}
+  \begin{itemize}
+    \item Идея задачи --- Анна Малова
+    \item Подготовка тестов --- Григорий Шовкопляс
+    \item Разбор задачи --- Григорий Шовкопляс
+  \end{itemize}
+\end{frame}
+
+\subsection{Постановка задачи}
+
+\begin{frame}[t]{Постановка задачи}
+\begin{itemize}
+    \item Дан набор латинских букв.
+    \item Каждый ход:
+        \begin{itemize}
+             \item Удаляется две одинаковых буквы.
+             \item Добавляется любая новая.
+        \end{itemize}
+    \item Кто не может сделать ход, проигрывает.
+    \item Нужно узнать, кто выиграет при правильной стратегии.
+\end{itemize}
+\end{frame}
+
+\subsection{Решение задачи}
+
+\begin{frame}[t]{Общие наблюдения}
+\begin{itemize}
+    \item Порядок букв не важен.
+    \item Некоторые буквы встречаются в строке чётное количество раз $N_{even}$, а некоторые нечётное $N_{odd}$.
+    \item Каждое состояние игры можно охарактеризовать числами $N_{even}$ и $N_{odd}$.
+    \item Проигрышная позиция~--- $N_{odd}$ совпадает с числом букв в наборе.
+    \item При удалении двух букв четность не меняется.
+    \item При добавлении одной меняется.
+    \item Игра не содержит циклов.
+\end{itemize}
+\end{frame}
+
+\subsection{Решение задачи}
+
+\begin{frame}[t]{Динамическое программирование}
+\begin{itemize}
+    \item Стандартная задача динамического программирования для подсчёта выигрышных позиций.
+    \item Состояние ~--- общее число букв в наборе $K$, а также $N_{even}$ и $N_{odd}$.
+    \item Переходы:
+        \begin{itemize}
+            \item $\langle K, N_{even}, N_{odd} \rangle \longrightarrow \langle K - 1, N_{even} - 1, N_{odd} + 1 \rangle$.
+            \item $\langle K, N_{even}, N_{odd} \rangle \longrightarrow \langle K - 1, N_{even} + 1, N_{odd} - 1 \rangle$.
+        \end{itemize}
+    \item Полезное замечание: $N_{even} = 26 - N_{odd}$. Можно отказаться от третьего параметра.
+\end{itemize}
+\end{frame}
+
+\subsection{Решение задачи}
+
+\begin{frame}[t]{Альтернативное решение}
+ Формула:
+ \begin{itemize}
+     \item $N_{odd} = K$: выигрывает Дима.
+     \item $N_{odd}$~--- четное: Гриша выиграет только, если $N_{odd} = K - 2$.
+     \item $N_{odd}$~--- нечетное: Дима выиграет только, если $N_{odd} < K - 2$.
+ \end{itemize}
+ Доказательство формулы следует из предыдущего решения и оставляется слушателю в качестве упражнения.
+\end{frame}

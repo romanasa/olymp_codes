@@ -1,0 +1,45 @@
+\hoffset=-20mm
+\voffset=-28mm
+\textheight=175mm
+\textwidth=280mm
+
+\newcommand{\outlinebox}[2]{\begin{center}\begin{tabular}{|p{#1}|}\hline \vspace{#2} \\ \hline\end{tabular}\end{center}}
+\newcommand{\scriptline}[1]{\parbox{#1}{\vspace{1em}\hfill\hrule}}
+\newcommand{\inlinebox}[2]{\parbox{#1}{\vbox{\hrule\hbox{\vrule\vbox{\vspace{#2}~}\vrule}\hrule}}}
+\newcommand{\inlineboxok}[2]{\parbox{#1}{\vbox{\hrule height#2 width#2}}}
+\newcommand{\checkbox}{\inlinebox{2mm}{2mm}}
+\newcommand{\checkboxok}{\inlineboxok{2mm}{2mm}}
+\newcommand{\choice}[1]{\checkbox\mbox{\hspace{0.2cm}}#1\hspace{0.2cm}}
+\newcommand{\pchoice}[1]{\checkbox&#1\\}
+\newcommand{\choiceok}[1]{\checkboxok\mbox{\hspace{0.5cm}}#1\hspace{1cm}}
+
+%---------- From package "lastpage" ------------------
+\def\lastpage@putlabel{\addtocounter{page}{-1}%
+   \immediate\write\@auxout{\string\newlabel{LastPage}{{}{\thepage}}}%
+   \addtocounter{page}{1}}
+\AtEndDocument{\clearpage\lastpage@putlabel}%
+%---------- end of "lastpage" ------------------
+
+\makeatletter
+
+\renewcommand{\@oddhead}{%
+\parbox{\textwidth}{%
+\sffamily\begin{center}
+ЛКШ 2012-Июль. Судиславль, <<Берендеевы поляны>>. Теоретический зачет, тест. 24 июля 2012 года.
+\\[2pt]
+\hrule%
+\end{center}}%
+}
+
+\renewcommand{\@oddfoot}{%
+\parbox{\textwidth}{%
+\hrule%
+\vspace{6pt}%
+\sffamily{{\hfil}Страница\ \thepage\ из \pageref{LastPage}\hfil}}%
+}%
+
+\makeatother
+
+% Copied from 'amstex.tex' \bmod declaration
+\def\bdiv{\mskip-\medmuskip\mkern5mu\mathbin{\mathrm{div}}\mkern5mu\mskip-\medmuskip}
+% End of copied text

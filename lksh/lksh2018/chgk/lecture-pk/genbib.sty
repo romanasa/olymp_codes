@@ -1,0 +1,30 @@
+\usepackage{keyval}
+
+\newcommand{\genbib@vs}[1]{{\bf{}#1}}
+\newcommand{\genbib@ns}[1]{ (#1)}
+\newcommand{\genbib@ps}[1]{, \genbib@pagetext~#1}
+\newcommand{\genbib@pss}[1]{, \genbib@pagestext~#1}
+\newcommand{\genbib@ys}[1]{ (#1)}
+\newcommand{\genbib@ms}[1]{}
+
+\def\genbib@pagetext{p.}
+\def\genbib@pagestext{pp.}
+
+\define@key{genbib}{vol}{\def\genbib@vol{\genbib@vs{#1}}}
+\define@key{genbib}{no}{\def\genbib@no{\genbib@ns{#1}}}
+\define@key{genbib}{page}{\def\genbib@page{\genbib@ps{#1}}}
+\define@key{genbib}{pages}{\def\genbib@page{\genbib@pss{#1}}}
+\define@key{genbib}{year}{\def\genbib@year{\genbib@ys{#1}}}
+\define@key{genbib}{month}{\def\genbib@month{\genbib@ms{#1}}}
+\define@key{genbib}{russian}[]{\def\genbib@pagetext{стр.}\def\genbib@pagestext{стр.}}
+\define@key{genbib}{english}[]{\def\genbib@pagetext{p.}\def\genbib@pagestext{pp.}}
+
+\newcommand{\pubdata}[1]{%
+\def\genbib@vol{}%
+\def\genbib@no{}%
+\def\genbib@page{}%
+\def\genbib@year{}%
+\def\genbib@month{}%
+\setkeys{genbib}{#1}%
+\genbib@vol\genbib@no\genbib@page\genbib@month\genbib@year%
+}
