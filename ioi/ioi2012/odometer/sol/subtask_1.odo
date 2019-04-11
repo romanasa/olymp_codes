@@ -1,0 +1,20 @@
+right
+
+jump A
+
+B:
+	get
+	move
+	pebble C
+	halt
+
+C:
+	get
+	left
+	left
+	move
+	right
+	right
+
+A:
+	pebble B

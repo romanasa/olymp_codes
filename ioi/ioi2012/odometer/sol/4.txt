@@ -1,0 +1,117 @@
+right
+move
+
+CHECK_RIGHT:
+pebble PUSH_LEFT
+move
+pebble PUSH_LEFT
+move
+pebble PUSH_LEFT
+move
+pebble PUSH_LEFT
+move
+border FINISH_LEFT
+jump CHECK_RIGHT
+
+BEFORE_PUSH_LEFT:
+left
+left
+PUSH_LEFT:
+get
+left
+left
+MOVE_LEFT:
+move
+move
+move
+move
+border DROP_PEBBLE
+jump MOVE_LEFT
+
+DROP_PEBBLE:
+put
+right
+right
+move
+jump CHECK_RIGHT
+
+FINISH_LEFT:
+right
+border BEFORE_MOVE_LEFT_3
+move
+right
+MOVE_LEFT_2:
+pebble BEFORE_PUSH_LEFT
+move
+pebble BEFORE_PUSH_LEFT
+move
+pebble BEFORE_PUSH_LEFT
+move
+pebble BEFORE_PUSH_LEFT
+move
+border MOVE_BOTTOM
+jump MOVE_LEFT_2
+
+BEFORE_MOVE_LEFT_3:
+right
+MOVE_LEFT_3:
+move
+move
+move
+move
+border MOVE_BOTTOM
+jump MOVE_LEFT_3
+
+MOVE_BOTTOM:
+left
+border PUSH_TOP
+move
+left
+move
+jump CHECK_RIGHT
+
+PUSH_TOP:
+right
+right
+
+MOVE_TOP:
+move
+move
+move
+move
+border FIND_BOTTOM
+jump MOVE_TOP
+
+FIND_BOTTOM:
+right
+right
+MOVE_BOTTOM_2:
+move
+pebble PUSH_TOP_START
+move
+pebble PUSH_TOP_START
+move
+pebble PUSH_TOP_START
+move
+pebble PUSH_TOP_START
+border TERMINATE
+jump MOVE_BOTTOM_2
+
+PUSH_TOP_START:
+get
+right
+right
+PUSH_TOP_2:
+move
+move
+move
+move
+border END_PUSH_TOP
+jump PUSH_TOP_2
+
+END_PUSH_TOP:
+put
+jump FIND_BOTTOM
+
+TERMINATE:
+halt
